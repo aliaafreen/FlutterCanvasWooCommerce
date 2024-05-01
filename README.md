@@ -1,39 +1,30 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Flutter Canvas WooCommerce API
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+A Flutter package that helps in communicating with WooCommerce APIs, developed by fluttercanvas.io.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Getting Started
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+To use this package, follow these steps:
 
-## Features
+1. **Obtain WooCommerce Consumer Secret and Key with Domain URL**:
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+   - In your `main.dart` file, initialize a `FlutterCanvasWooCommerce` instance using the `init` function.
+   - Pass the key, secret, and URL in the `init` function as follows:
 
-## Getting started
+     ```dart
+     FlutterCanvasWoo.instance.init(
+       url: 'your_domain_url',
+       consumerKey: 'your_consumer_key',
+       consumerSecret: 'your_consumer_secret'
+     );
+     ```
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+2. **Using the API in Your Project**:
 
-## Usage
+   - For example, to fetch products, you can implement it as follows:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+     ```dart
+     FlutterCanvasWoo.instance.fetchProducts(pageNumber: 1, perPage: 15);
+     ```
 
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+   Make sure to replace `'your_domain_url'`, `'your_consumer_key'`, and `'your_consumer_secret'` with your actual WooCommerce domain URL, consumer key, and consumer secret respectively.
