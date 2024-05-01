@@ -1,16 +1,16 @@
-class ShippingZone_model {
+class ShippingZoneModel {
   int? id;
   String? name;
   int? order;
-  var links;
+  dynamic links;
 
-  ShippingZone_model({this.id, this.name, this.order, this.links});
+  ShippingZoneModel({this.id, this.name, this.order, this.links});
 
-  ShippingZone_model.fromJson(Map<String, dynamic> json) {
+  ShippingZoneModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     order = json['order'];
-    links = json['_links'] != null ? json['_links'] : null;
+    links = json['_links'];
   }
 
   Map<String, dynamic> toJson() {

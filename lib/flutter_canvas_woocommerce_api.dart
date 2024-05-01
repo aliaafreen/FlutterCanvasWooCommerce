@@ -1,7 +1,7 @@
-
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:convert';
+import 'package:http/http.dart';
 import 'models/coupon_model.dart';
 import 'models/customer_model.dart';
 import 'models/order_model.dart';
@@ -14,10 +14,10 @@ class FlutterCanvasWooCommerce {
 // using this class function with instance to use following variables for Communication using http package functions(GET,POST)
   static final FlutterCanvasWooCommerce instance = FlutterCanvasWooCommerce();
 
-  String base_Url = '';
-  String consumer_Key = '';
-  String consumer_Secret = '';
-  var expiriment;
+  String baseUrl = '';
+  String consumerKey = '';
+  String consumerSecret = '';
+
 // Create and Update requests for this Key and Scerete must be allowed
 
   init(
@@ -25,9 +25,9 @@ class FlutterCanvasWooCommerce {
       required String consumerKey, // Key for Woo REST API from WordPress
       required String consumerSecrete // Secrete for Woo REST API from WordPress
       }) {
-    consumer_Key = consumerKey;
-    consumer_Secret = consumerSecrete;
-    base_Url = '$url/wp-json/wc/v3/';
+    consumerKey = consumerKey;
+    consumerSecret = consumerSecrete;
+    baseUrl = '$url/wp-json/wc/v3/';
   }
 
 // This function will be use to get products created. Can get responses on basis of condition such as page_number or per_page .
@@ -221,9 +221,8 @@ class FlutterCanvasWooCommerce {
 // ApiService is another class in which http package functions are defined ,
 // it'll make query get response and will pass response as it is if request is successful (i.e. Status Code == 200)
 // or else if failed it'll throw exception with response recieved.
-    var res;
-    res = await ApiServices()
-        .getRequest(request_api, base_Url, consumer_Key, consumer_Secret);
+    Response res = await ApiServices()
+        .getRequest(request_api, baseUrl, consumerKey, consumerSecret);
     // since complete response is returned , response body will be decoded to get json object.
     var decoded_data = json.decode(res.body);
 
@@ -248,8 +247,8 @@ class FlutterCanvasWooCommerce {
 // ApiService is another class in which http package functions are defined ,
 // it'll make query get response and will pass response as it is if request is successful (i.e. Status Code == 200)
 // or else if failed it'll throw exception with response recieved.
-    var res = await ApiServices()
-        .getRequest(request_api, base_Url, consumer_Key, consumer_Secret);
+    Response res = await ApiServices()
+        .getRequest(request_api, baseUrl, consumerKey, consumerSecret);
     // since complete response is returned , response body will be decoded to get json object.
     var decoded_data = json.decode(res.body);
 
@@ -296,21 +295,36 @@ class FlutterCanvasWooCommerce {
         orderHistory_request_api += '?per_page=10'; // Default perPage
       }
 
-      if (context != null) orderHistory_request_api += '&context=$context';
-      if (page != null) orderHistory_request_api += '&page=$page';
-      if (search != null) orderHistory_request_api += '&search=$search';
-      if (after != null) orderHistory_request_api += '&after=$after';
-      if (before != null) orderHistory_request_api += '&before=$before';
-      if (modifiedAfter != null)
+      if (context != null) {
+        orderHistory_request_api += '&context=$context';
+      }
+      if (page != null) {
+        orderHistory_request_api += '&page=$page';
+      }
+      if (search != null) {
+        orderHistory_request_api += '&search=$search';
+      }
+      if (after != null) {
+        orderHistory_request_api += '&after=$after';
+      }
+      if (before != null) {
+        orderHistory_request_api += '&before=$before';
+      }
+      if (modifiedAfter != null) {
         orderHistory_request_api += '&modified_after=$modifiedAfter';
-      if (modifiedBefore != null)
+      }
+      if (modifiedBefore != null) {
         orderHistory_request_api += '&modified_before=$modifiedBefore';
-      if (datesAreGmt != null)
+      }
+      if (datesAreGmt != null) {
         orderHistory_request_api += '&dates_are_gmt=$datesAreGmt';
-      if (exclude != null && exclude.isNotEmpty)
+      }
+      if (exclude != null && exclude.isNotEmpty) {
         orderHistory_request_api += '&exclude=${exclude.join(',')}';
-      if (include != null && include.isNotEmpty)
+      }
+      if (include != null && include.isNotEmpty) {
         orderHistory_request_api += '&include=${include.join(',')}';
+      }
       if (offset != null) orderHistory_request_api += '&offset=$offset';
       if (order != null) {
         String orderType = 'asc';
@@ -319,21 +333,29 @@ class FlutterCanvasWooCommerce {
         orderHistory_request_api += '&order=$orderType';
       }
       if (orderBy != null) orderHistory_request_api += '&orderby=$orderBy';
-      if (parent != null && parent.isNotEmpty)
+      if (parent != null && parent.isNotEmpty) {
         orderHistory_request_api += '&parent=${parent.join(',')}';
-      if (parentExclude != null && parentExclude.isNotEmpty)
+      }
+      if (parentExclude != null && parentExclude.isNotEmpty) {
         orderHistory_request_api +=
             '&parent_exclude=${parentExclude.join(',')}';
-      if (status != null && status.isNotEmpty)
+      }
+      if (status != null && status.isNotEmpty) {
         orderHistory_request_api += '&status=${status.join(',')}';
-      if (woo_customer_id != null)
+      }
+      if (woo_customer_id != null) {
         orderHistory_request_api += '&customer=$woo_customer_id';
-      if (product != null) orderHistory_request_api += '&product=$product';
-      if (dp != null) orderHistory_request_api += '&dp=$dp';
+      }
+      if (product != null) {
+        orderHistory_request_api += '&product=$product';
+      }
+      if (dp != null) {
+        orderHistory_request_api += '&dp=$dp';
+      }
     }
 
-    var res = await ApiServices().getRequest(
-        orderHistory_request_api, base_Url, consumer_Key, consumer_Secret);
+    Response res = await ApiServices().getRequest(
+        orderHistory_request_api, baseUrl, consumerKey, consumerSecret);
     var decodedData = json.decode(res.body);
 
     // If orderID is provided, return a single OrderModel object
@@ -387,38 +409,37 @@ class FlutterCanvasWooCommerce {
         'country': country,
       },
     };
-    var res;
+    Response res;
     var encodedData_customerData = json.encode(customerData);
 
     res = await ApiServices().postRequest(
         body: encodedData_customerData,
         request: 'customers',
-        baseUrl: base_Url,
-        consumerKey: consumer_Key,
-        consumerSecret: consumer_Secret);
-    expiriment = res;
+        baseUrl: baseUrl,
+        consumerKey: consumerKey,
+        consumerSecret: consumerSecret);
 
     var decoded_data = json.decode(res.body);
-    Customer_model parsedData = Customer_model.fromJson(decoded_data);
+    CustomerModel parsedData = CustomerModel.fromJson(decoded_data);
     return parsedData;
   }
 
   shipping_zones({
     int? id,
   }) async {
-    var res;
+    Response res;
     String? request_api = 'shipping/zones';
     if (id != null) {
       request_api = '$request_api/$id';
     }
 
     res = await ApiServices()
-        .getRequest(request_api, base_Url, consumer_Key, consumer_Secret);
+        .getRequest(request_api, baseUrl, consumerKey, consumerSecret);
     var decoded_data = json.decode(res.body);
-    List<ShippingZone_model> parsed_list = [];
+    List<ShippingZoneModel> parsed_list = [];
     for (var i = 0; i < decoded_data.length; i++) {
-      ShippingZone_model parse_data =
-          ShippingZone_model.fromJson(decoded_data[i]);
+      ShippingZoneModel parse_data =
+          ShippingZoneModel.fromJson(decoded_data[i]);
       parsed_list.add(parse_data);
     }
     return parsed_list;
@@ -460,10 +481,12 @@ class FlutterCanvasWooCommerce {
       if (search != null) request_api += '&search=$search';
       if (after != null) request_api += '&after=$after';
       if (before != null) request_api += '&before=$before';
-      if (modifiedAfter != null)
+      if (modifiedAfter != null) {
         request_api += '&modified_after=$modifiedAfter';
-      if (modifiedBefore != null)
+      }
+      if (modifiedBefore != null) {
         request_api += '&modified_before=$modifiedBefore';
+      }
       if (datesAreGmt != null) request_api += '&dates_are_gmt=$datesAreGmt';
       if (exclude != null) request_api += '&exclude=${exclude.join(',')}';
       if (include != null) request_api += '&include=${include.join(',')}';
@@ -482,18 +505,18 @@ class FlutterCanvasWooCommerce {
       if (code != null) request_api += '&code=$code';
     }
 
-    var res = await ApiServices()
-        .getRequest(request_api, base_Url, consumer_Key, consumer_Secret);
+    Response res = await ApiServices()
+        .getRequest(request_api, baseUrl, consumerKey, consumerSecret);
     var decode_data = json.decode(res.body);
 
-    // If id is provided, return a single Coupon_model object
+    // If id is provided, return a single CouponModel object
     if (id != null) {
-      return Coupon_model.fromJson(decode_data);
+      return CouponModel.fromJson(decode_data);
     } else {
-      // If id is not provided, return a list of Coupon_model objects
-      List<Coupon_model> parsed_list = [];
+      // If id is not provided, return a list of CouponModel objects
+      List<CouponModel> parsed_list = [];
       for (var i = 0; i < decode_data.length; i++) {
-        Coupon_model parsed_data = Coupon_model.fromJson(decode_data[i]);
+        CouponModel parsed_data = CouponModel.fromJson(decode_data[i]);
         parsed_list.add(parsed_data);
       }
       return parsed_list;
@@ -541,17 +564,17 @@ class FlutterCanvasWooCommerce {
       if (slug != null) request_api += '&slug=$slug';
     }
 
-    var res = await ApiServices()
-        .getRequest(request_api, base_Url, consumer_Key, consumer_Secret);
+    Response res = await ApiServices()
+        .getRequest(request_api, baseUrl, consumerKey, consumerSecret);
     var decode_data = json.decode(res.body);
 
     if (id != null) {
-      return ProductCategory_model.fromJson(decode_data);
+      return ProductCategoryModel.fromJson(decode_data);
     } else {
-      List<ProductCategory_model> parsed_list = [];
+      List<ProductCategoryModel> parsed_list = [];
       for (var i = 0; i < decode_data.length; i++) {
-        ProductCategory_model parsed_data =
-            ProductCategory_model.fromJson(decode_data[i]);
+        ProductCategoryModel parsed_data =
+            ProductCategoryModel.fromJson(decode_data[i]);
         parsed_list.add(parsed_data);
       }
       return parsed_list;
@@ -609,14 +632,14 @@ class FlutterCanvasWooCommerce {
           : request_api;
     }
 
-    var res = await ApiServices()
-        .getRequest(request_api, base_Url, consumer_Key, consumer_Secret);
+    Response res = await ApiServices()
+        .getRequest(request_api, baseUrl, consumerKey, consumerSecret);
     var decoded_data = json.decode(res.body);
     if (id != null) {
-      return Customer_model.fromJson(decoded_data);
+      return CustomerModel.fromJson(decoded_data);
     } else {
       return (decoded_data as List)
-          .map((customerJson) => Customer_model.fromJson(customerJson))
+          .map((customerJson) => CustomerModel.fromJson(customerJson))
           .toList();
     }
   }

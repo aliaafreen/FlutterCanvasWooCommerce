@@ -1,64 +1,65 @@
 class Product {
-  final id;
-  final name;
-  final slug;
-  final permalink;
-  final type;
-  final status;
-  final featured;
-  final catalogVisibility;
-  final description;
-  final short_description;
-  final sku;
-  final price;
-  final regularPrice;
-  final salePrice;
-  final priceHtml;
-  final onSale;
-  final purchasable;
-  final totalSales;
-  final virtual;
-  final downloadable;
-  final downloads;
-  final downloadLimit;
-  final downloadExpiry;
-  final externalUrl;
-  final buttonText;
-  final taxStatus;
-  final taxClass;
-  final manageStock;
-  final stockQuantity;
-  final stockStatus;
-  final backorders;
-  final backordersAllowed;
-  final backordered;
-  final soldIndividually;
-  final weight;
-  final dimensions;
-  final shippingRequired;
-  final shippingTaxable;
-  final shippingClass;
-  final shippingClassId;
-  final reviewsAllowed;
-  final averageRating;
-  final ratingCount;
-  final relatedIds;
-  final upsellIds;
-  final crossSellIds;
-  final parentId;
-  final purchaseNote;
-  final categories;
-  final tags;
-  final images;
-  final attributes;
-  final defaultAttributes;
-  final variations;
-  final groupedProducts;
-  final menuOrder;
-  final metaData;
-  final dateCreated, dateCreatedGMT;
-  final timeList;
-  final duration;
+  final int? id;
+  final String? name;
+  final String? slug;
+  final String? permalink;
+  final String? type;
+  final String? status;
+  final bool? featured;
+  final String? catalogVisibility;
+  final String? description;
+  final String? shortDescription;
+  final String? sku;
+  final String? price;
+  final String? regularPrice;
+  final String? salePrice;
+  final String? priceHtml;
+  final bool? onSale;
+  final bool? purchasable;
+  final int? totalSales;
+  final bool? virtual;
+  final bool? downloadable;
+  final List<Download>? downloads;
+  final int? downloadLimit;
+  final int? downloadExpiry;
+  final String? externalUrl;
+  final String? buttonText;
+  final String? taxStatus;
+  final String? taxClass;
+  final bool? manageStock;
+  final int? stockQuantity;
+  final String? stockStatus;
+  final String? backorders;
+  final bool? backordersAllowed;
+  final bool? backordered;
+  final bool? soldIndividually;
+  final String? weight;
+  final Map<String, dynamic>? dimensions;
+  final bool? shippingRequired;
+  final bool? shippingTaxable;
+  final String? shippingClass;
+  final int? shippingClassId;
+  final bool? reviewsAllowed;
+  final String? averageRating;
+  final int? ratingCount;
+  final List<int>? relatedIds;
+  final List<int>? upsellIds;
+  final List<int>? crossSellIds;
+  final int? parentId;
+  final String? purchaseNote;
+  final List? categories;
+  final List? tags;
+  final List? images;
+  final List<Attribute>? attributes;
+  final List<Attribute>? defaultAttributes;
+  final List<int>? variations;
+  final List<int>? groupedProducts;
+  final int? menuOrder;
+  final List<dynamic>? metaData;
+  final String? dateCreated;
+  final String? dateCreatedGMT;
+  final String? timeList;
+  final String? duration;
 
   Product(
       {this.duration,
@@ -72,7 +73,7 @@ class Product {
       this.featured,
       this.catalogVisibility,
       this.description,
-      this.short_description,
+      this.shortDescription,
       this.sku,
       this.price,
       this.regularPrice,
@@ -136,7 +137,7 @@ class Product {
         featured: json['featured'],
         catalogVisibility: json['catalog_visibility'],
         description: json['description'],
-        short_description: json['short_description'],
+        shortDescription: json['short_description'],
         sku: json['sku'],
         price: json['price'],
         regularPrice: json['regular_price'],
@@ -204,7 +205,7 @@ class Product {
         "featured": e.featured,
         "catalogVisibility": e.catalogVisibility,
         "description": e.description,
-        "short_description": e.short_description,
+        "short_description": e.shortDescription,
         "sku": e.sku,
         "price": e.price,
         "regularPrice": e.regularPrice,

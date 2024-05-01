@@ -1,4 +1,4 @@
-class Customer_model {
+class CustomerModel {
   int? id;
   DateTime? dateCreated;
   DateTime? dateCreatedGmt;
@@ -16,7 +16,7 @@ class Customer_model {
   String? avatarUrl;
   List<dynamic>? metaData;
 
-  Customer_model({
+  CustomerModel({
     this.id,
     this.dateCreated,
     this.dateCreatedGmt,
@@ -35,8 +35,8 @@ class Customer_model {
     this.metaData,
   });
 
-  factory Customer_model.fromJson(Map<String, dynamic> json) {
-    return Customer_model(
+  factory CustomerModel.fromJson(Map<String, dynamic> json) {
+    return CustomerModel(
       id: json['id'],
       dateCreated: DateTime.parse(json['date_created']),
       dateCreatedGmt: DateTime.parse(json['date_created_gmt']),
@@ -56,7 +56,7 @@ class Customer_model {
     );
   }
 
-  Map<String, dynamic> toMap(Customer_model e) {
+  Map<String, dynamic> toMap(CustomerModel e) {
     return {
       "id": e.id,
       "date_created": e.dateCreated,

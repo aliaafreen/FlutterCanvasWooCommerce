@@ -3,13 +3,13 @@ import 'package:http/http.dart' as http;
 
 class ApiServices {
   Future<http.Response> getRequest(
-      String request, base_Url, consumer_Key, consumer_Secret) async {
+      String request, baseUrl, consumerKey, consumerSecret) async {
     final response = await http.get(
-      Uri.parse(base_Url! + request),
+      Uri.parse(baseUrl! + request),
       // Add your authentication headers here
       headers: {
         'Authorization':
-            'Basic ${base64Encode(utf8.encode('$consumer_Key:$consumer_Secret'))}',
+            'Basic ${base64Encode(utf8.encode('$consumerKey:$consumerSecret'))}',
       },
     );
     if (response.statusCode == 200) {

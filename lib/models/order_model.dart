@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class OrderModel {
   final int? id;
   final int? parentId;
@@ -198,13 +196,3 @@ class OrderModel {
     };
   }
 }
-
-// // Function to convert JSON to OrderModel object with all parameters
-// OrderModel orderFromJson(Map<String, dynamic> json) {
-//   return OrderModel.fromJson(json);
-// }
-
-// Function to convert OrderModel object to JSON with all parameters
-// Map<String, dynamic> orderToJson(OrderModel data) {
-//   return data.toJson();
-// }

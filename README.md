@@ -14,8 +14,8 @@ To use this package, follow these steps:
      ```dart
      FlutterCanvasWoo.instance.init(
        url: 'your_domain_url',
-       consumerKey: 'your_consumer_key',
-       consumerSecret: 'your_consumer_secret'
+       consumerKey: 'your_consumerKey',
+       consumerSecret: 'your_consumerSecret'
      );
      ```
 
@@ -27,4 +27,4 @@ To use this package, follow these steps:
      FlutterCanvasWoo.instance.fetchProducts(pageNumber: 1, perPage: 15);
      ```
 
-   Make sure to replace `'your_domain_url'`, `'your_consumer_key'`, and `'your_consumer_secret'` with your actual WooCommerce domain URL, consumer key, and consumer secret respectively.
+   Make sure to replace `'your_domain_url'`, `'your_consumerKey'`, and `'your_consumerSecret'` with your actual WooCommerce domain URL, consumer key, and consumer secret respectively.

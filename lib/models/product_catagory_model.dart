@@ -1,4 +1,4 @@
-class ProductCategory_model {
+class ProductCategoryModel {
   int? id;
   String? name;
   String? slug;
@@ -9,7 +9,7 @@ class ProductCategory_model {
   int? menuOrder;
   int? count;
 
-  ProductCategory_model({
+  ProductCategoryModel({
     this.id,
     this.name,
     this.slug,
@@ -21,8 +21,8 @@ class ProductCategory_model {
     this.count,
   });
 
-  factory ProductCategory_model.fromJson(Map<String, dynamic> json) {
-    return ProductCategory_model(
+  factory ProductCategoryModel.fromJson(Map<String, dynamic> json) {
+    return ProductCategoryModel(
       id: json['id'],
       name: json['name'],
       slug: json['slug'],
@@ -35,7 +35,7 @@ class ProductCategory_model {
     );
   }
 
-  Map<String, dynamic> toJson(ProductCategory_model data) {
+  Map<String, dynamic> toJson(ProductCategoryModel data) {
     return {
       'id': data.id,
       'name': data.name,

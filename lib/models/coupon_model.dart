@@ -1,4 +1,4 @@
-class Coupon_model {
+class CouponModel {
   int? id;
   String? code;
   String? amount;
@@ -27,7 +27,7 @@ class Coupon_model {
   List<String>? usedBy;
   List<Map<String, dynamic>>? metaData;
 
-  Coupon_model({
+  CouponModel({
     this.id,
     this.code,
     this.amount,
@@ -57,8 +57,8 @@ class Coupon_model {
     this.metaData,
   });
 
-  factory Coupon_model.fromJson(Map<String, dynamic> json) {
-    return Coupon_model(
+  factory CouponModel.fromJson(Map<String, dynamic> json) {
+    return CouponModel(
       id: json['id'],
       code: json['code'],
       amount: json['amount'],
@@ -90,7 +90,7 @@ class Coupon_model {
           json['meta_data'].map((x) => Map<String, dynamic>.from(x))),
     );
   }
-  Map<String, dynamic> toJson(Coupon_model data) {
+  Map<String, dynamic> toJson(CouponModel data) {
     return {
       'id': data.id,
       'code': data.code,
